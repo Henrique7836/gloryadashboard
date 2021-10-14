@@ -1,0 +1,36 @@
+package com.glorya.dashboard.controller;
+
+import com.glorya.dashboard.model.Cartao;
+import com.glorya.dashboard.service.CartaoService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(path = "api/cartao")
+
+public class CartaoController {
+    private final CartaoService cartaoService;
+
+    @Autowired
+    public CartaoController(CartaoService cartaoService) {
+        this.cartaoService = cartaoService;
+    }
+
+    @GetMapping
+    public List<Cartao> getCartoes() {
+        return cartaoService.getAll();
+    }
+
+    @PostMapping
+    public void registrarNovoCartao(@RequestBody Cartao cartao) {
+        cartaoService.saveCartao(cartao);
+    }
+}
+ 
