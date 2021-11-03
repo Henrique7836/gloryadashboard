@@ -22,7 +22,7 @@ public class EmpresaService {
         return empresaRepository.findAll();
     }
 
-    public Empresa getEmpresa(Long empresaId) {
+    public Empresa getEmpresa(int empresaId) {
         Empresa premiadoRecuperado = empresaRepository.findById(empresaId)
             .orElseThrow(() -> new IllegalStateException("Empresa com Id" + empresaId + "não consta na base"));
         return premiadoRecuperado;
@@ -45,7 +45,7 @@ public class EmpresaService {
         empresaRepository.save(empresa);
     }
 
-    public void deleteEmpresa(Long empresaId) {
+    public void deleteEmpresa(int empresaId) {
         boolean premiadoExists = empresaRepository.findById(empresaId).isPresent();
         if(!premiadoExists) {
             throw new IllegalStateException("Empresa com Id" + empresaId + "não existe");
@@ -62,7 +62,6 @@ public class EmpresaService {
             empresaRecuperado.setCnpj(empresa.getCnpj());
             empresaRecuperado.setId(empresa.getId());
             empresaRecuperado.setNome(empresa.getNome());
-            empresaRecuperado.setPremiados(empresa.getPremiados());
     }
 
 

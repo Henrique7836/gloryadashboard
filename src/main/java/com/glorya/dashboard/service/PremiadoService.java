@@ -21,7 +21,7 @@ public class PremiadoService {
         return premiadoRepository.findAll();
     }
 
-    public Premiado getPremiado(Long premiadoId) {
+    public Premiado getPremiado(int premiadoId) {
         Premiado premiadoRecuperado = premiadoRepository.findById(premiadoId)
             .orElseThrow(() -> new IllegalStateException("Premiado com Id" + premiadoId + "não consta na base"));
         return premiadoRecuperado;
@@ -44,7 +44,7 @@ public class PremiadoService {
         premiadoRepository.save(premiado);
     }
 
-    public void deletarPremiado(Long premiadoId) {
+    public void deletarPremiado(int premiadoId) {
         boolean premiadoExists = premiadoRepository.findById(premiadoId).isPresent();
         if(!premiadoExists) {
             throw new IllegalStateException("Premiado com Id" + premiadoId + "não existe");
@@ -59,7 +59,6 @@ public class PremiadoService {
             .orElseThrow(() -> new IllegalStateException("Premiado com CPF:" + premiado.getCPF() +"não existe na base"));
         
             premiadoRecuperado.setCPF(premiado.getCPF());
-            premiadoRecuperado.setCartoes(premiado.getCartoes());
             premiadoRecuperado.setEmpresa(premiado.getEmpresa());
             premiadoRecuperado.setId(premiado.getId());
             premiadoRecuperado.setNome(premiado.getNome());

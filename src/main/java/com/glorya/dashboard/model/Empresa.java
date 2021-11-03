@@ -23,18 +23,13 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "empresa_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nome_empresa", length = 50)
     private String nome;
 
     @Column(name = "CNPJ")
     private String cnpj;
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @Column(name = "premiados")
-    @JoinColumn(name="id", nullable = true)
-    private List<Premiado> premiados;
 
 
 }

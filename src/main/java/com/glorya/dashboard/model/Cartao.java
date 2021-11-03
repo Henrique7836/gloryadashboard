@@ -1,6 +1,8 @@
 package com.glorya.dashboard.model;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,9 +18,9 @@ import lombok.Setter;
 
 public class Cartao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "proxy")
-    private Long proxyId;
+    private Integer proxyId;
 
     @Column(name = "credito")
     private double credito;
@@ -30,6 +32,6 @@ public class Cartao {
     private String pam;
 
     @ManyToOne()
-    @JoinColumn(name="id", nullable = true)
+    @JoinColumn(name="premiado_id", nullable = true)
     private Premiado premiado;
 }

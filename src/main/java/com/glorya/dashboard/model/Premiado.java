@@ -1,6 +1,8 @@
 package com.glorya.dashboard.model;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ public class Premiado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "premiado_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nome_premiado", length = 50)
     private String nome;
@@ -31,10 +33,7 @@ public class Premiado {
     private String CPF;
     
     @ManyToOne()
-    @JoinColumn(name="id", nullable = true)
+    @JoinColumn(name="empresa_id", nullable = true)
     private Empresa empresa;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="proxyId", nullable = true)
-    private List<Cartao> cartoes;
 }
